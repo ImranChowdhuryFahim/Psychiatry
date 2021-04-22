@@ -8,17 +8,43 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home" />
+
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/profile"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="Profile"/>
+
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/updateInfo"
+            android:icon="@drawable/ic_baseline_update_24"
+            android:title="Update Info"/>
+
+        <item
+            android:id="@+id/problemList"
+            android:icon="@drawable/ic_baseline_list_alt_24"
+            android:title="Problems List"/>
+
+        <item
+            android:id="@+id/appointmentRequests"
+            android:icon="@drawable/ic_baseline_list_alt_24"
+            android:title="Appointment Request"/>
+
+        <item
+            android:id="@+id/studentRequests"
+            android:icon="@drawable/ic_baseline_list_alt_24"
+            android:title="Student Requests"/>
+
+        <item
+            android:id="@+id/appointmentList"
+            android:icon="@drawable/ic_baseline_schedule_24"
+            android:title="Appointment Schedules"/>
         <item
             android:id="@+id/nav_depressionMeter"
             android:icon="@drawable/ic_baseline_speed_24"
             android:title="Depression Meter"/>
+        <item
+            android:id="@+id/notifications"
+            android:icon="@drawable/ic_baseline_notifications_active_24"
+            android:title="Notifications"/>
     </group>
 </menu>

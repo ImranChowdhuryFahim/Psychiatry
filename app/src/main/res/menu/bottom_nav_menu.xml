@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/psychological"
+        android:icon="@drawable/ic_baseline_psychology_24"
+        android:title="Psychological" />
+
+    <item
+        android:id="@+id/educational"
+        android:icon="@drawable/ic_baseline_cast_for_education_24"
+        android:title="Educational" />
+
+
+</menu>

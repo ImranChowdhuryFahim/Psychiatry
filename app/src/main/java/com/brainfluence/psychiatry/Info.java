@@ -1,7 +1,7 @@
 package com.brainfluence.psychiatry;
 
 public class Info {
-    public String mentalHealth,stress,apd,anxiety,bipolar,bpd,clinicalDepression,mentalIllness,ocd,eatingDisorder,drugAddiction;
+    public String mentalHealth,stress,apd,anxiety,bipolar,bpd,clinicalDepression,mentalIllness,ocd,eatingDisorder,drugAddiction,depressionCheck;
 
     public Info() {
         this.mentalHealth = "What Is Mental Health?\n" +
@@ -558,6 +558,8 @@ public class Info {
                 "•\tIndividual, group or family therapy sessions\n" +
                 "•\tA focus on understanding the nature of addiction, becoming drug-free and preventing relapse\n" +
                 "•\tLevels of care and settings that vary depending on your needs, such as outpatient, residential and inpatient programs";
+
+        this.depressionCheck = "We know how hard it can get when one lives with depression.But we're here to turn things around.\n\nLet's start by assessing how are you doing right now.";
     }
 
     public String getDrugAddiction() {
@@ -566,6 +568,10 @@ public class Info {
 
     public String getMentalHealth() {
         return mentalHealth;
+    }
+
+    public String getDepressionCheck() {
+        return depressionCheck;
     }
 
     public String getStress() {

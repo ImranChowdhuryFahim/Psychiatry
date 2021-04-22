@@ -1,5 +1,6 @@
 package com.brainfluence.psychiatry.ui.depressionMeter;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,15 +13,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.brainfluence.psychiatry.DepressionCheckerActivity;
+import com.brainfluence.psychiatry.Info;
 import com.brainfluence.psychiatry.R;
-import com.brainfluence.psychiatry.ui.gallery.GalleryFragment;
+
 
 
 public class DepressionMeter extends Fragment {
 
     private Button start;
+    private TextView infoDepressionCheck;
 
 
     @Override
@@ -29,17 +34,15 @@ public class DepressionMeter extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_depression_meter, container, false);
         start = root.findViewById(R.id.start);
+        infoDepressionCheck = root.findViewById(R.id.infoDepressionCheck);
+
+        Info info = new Info();
+
+        infoDepressionCheck.setText(info.getDepressionCheck());
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RelativeLayout fl = root.findViewById(R.id.fcnt);
-                fl.removeAllViews();
-                GalleryFragment fragment2 = new GalleryFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fcnt, fragment2);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                startActivity(new Intent(getActivity(), DepressionCheckerActivity.class));
             }
         });
         return root;

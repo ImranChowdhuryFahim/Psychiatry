@@ -11,9 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Psychiatry">
-        <activity android:name=".TextShowActivity"
+        <activity android:name=".DepressionCheckerActivity"
             android:screenOrientation="portrait"
+            android:label="Depression Assessment Questionnaire"
             android:parentActivityName=".Home"></activity>
+        <activity
+            android:name=".TextShowActivity"
+            android:parentActivityName=".Home"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home"
