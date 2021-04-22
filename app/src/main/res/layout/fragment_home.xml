@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment"
+    android:background="#F8F8FF"
+>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            >
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="160dp"
+                android:elevation="20dp"
+                android:layout_margin="20dp"
+                android:id="@+id/mentalHealth"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/mental_health" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Mental Health"
+                        android:textAlignment="center"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        tools:ignore="RtlCompat"></TextView>
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="160dp"
+                android:elevation="20dp"
+                android:layout_margin="20dp"
+                android:id="@+id/stress"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/stress" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Stress Disorder"
+                        android:textAlignment="center"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        tools:ignore="RtlCompat"></TextView>
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+<!--            row 2-->
+
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="160dp"
+                android:elevation="20dp"
+                android:layout_margin="20dp"
+                android:id="@+id/apd"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/apsd" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Antisocial Personality Disorder"
+                        android:textAlignment="center"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        tools:ignore="RtlCompat"></TextView>
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="160dp"
+                android:elevation="20dp"
+                android:layout_margin="20dp"
+                android:id="@+id/anxiety"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:src="@drawable/anxiety" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Anxiety Disorder"
+                        android:textAlignment="center"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        tools:ignore="RtlCompat"></TextView>
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+<!--            row 3-->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="160dp"
+                android:elevation="20dp"
+                android:layout_margin="20dp"
+                android:id="@+id/bipolar"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/bipolar" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Bipolar Disorder"
+                        android:textAlignment="center"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        tools:ignore="RtlCompat"></TextView>
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="160dp"
+                android:elevation="20dp"
+                android:layout_margin="20dp"
+                android:id="@+id/bpd"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:src="@drawable/borderline" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:text="Borderline Personality Disorder"
+                        android:textAlignment="center"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        tools:ignore="RtlCompat"></TextView>
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+<!--            row 4-->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="160dp"
+                android:elevation="20dp"
+                android:layout_margin="20dp"
+                android:id="@+id/clinicalDepression"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/clinical" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Clinical Depression"
+                        android:textAlignment="center"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        tools:ignore="RtlCompat"></TextView>
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="160dp"
+                android:elevation="20dp"
+                android:layout_margin="20dp"
+                android:id="@+id/drugAddiction"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/drug" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Drug Addiction"
+                        android:textAlignment="center"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        tools:ignore="RtlCompat"></TextView>
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="160dp"
+                android:elevation="20dp"
+                android:layout_margin="20dp"
+                android:id="@+id/mentalIllness"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/mentalillness" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Mental Illness"
+                        android:textAlignment="center"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        tools:ignore="RtlCompat"></TextView>
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+<!--            row 5-->
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="160dp"
+                android:elevation="20dp"
+                android:layout_margin="20dp"
+                android:id="@+id/ocd"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ocd" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:text="Obsessive Compulsive Disorder"
+                        android:textAlignment="center"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        tools:ignore="RtlCompat"></TextView>
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="160dp"
+                android:elevation="20dp"
+                android:layout_margin="20dp"
+                android:id="@+id/eatingDisorder"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:src="@drawable/eating" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Eating Disorder"
+                        android:textAlignment="center"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        tools:ignore="RtlCompat"></TextView>
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+        </GridLayout>
+    </LinearLayout>
+
+
+</ScrollView>
