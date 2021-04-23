@@ -9,13 +9,955 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="20dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textStyle="bold"></TextView>
+            android:text="Beck's Depression Inventory
+This depression inventory can be self-scored."
+
+            android:textSize="16dp"
+            android:layout_marginBottom="5dp"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+        <RadioGroup
+            android:id="@+id/q1"
+            android:checkedButton="@+id/q11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I do not feel sad."/>
+            <RadioButton
+                android:id="@+id/q12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I feel sad"/>
+            <RadioButton
+                android:id="@+id/q13"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I am sad all the time and I can't snap out of it."/>
+            <RadioButton
+                android:id="@+id/q14"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I am so sad and unhappy that I can't stand it."/>
+        </RadioGroup>
+
+
+<!--   2     -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q2"
+            android:checkedButton="@+id/q21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q21"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I am not particularly discouraged about the future."/>
+            <RadioButton
+                android:id="@+id/q24"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I feel discouraged about the future."/>
+            <RadioButton
+                android:id="@+id/q22"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I feel I have nothing to look forward to."/>
+            <RadioButton
+                android:id="@+id/q23"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I feel the future is hopeless and that things cannot improve."/>
+
+        </RadioGroup>
+
+
+
+
+
+<!--        3-->
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q3"
+            android:checkedButton="@+id/q31"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q31"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I do not feel like a failure."/>
+            <RadioButton
+                android:id="@+id/q34"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I feel I have failed more than the average person."/>
+            <RadioButton
+                android:id="@+id/q32"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 As I look back on my life, all I can see is a lot of failures."/>
+            <RadioButton
+                android:id="@+id/q33"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I feel I am a complete failure as a person."/>
+
+        </RadioGroup>
+
+
+<!--        4-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q4"
+            android:checkedButton="@+id/q41"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q41"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I get as much satisfaction out of things as I used to."/>
+            <RadioButton
+                android:id="@+id/q44"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I don't enjoy things the way I used to."/>
+            <RadioButton
+                android:id="@+id/q42"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I don't get real satisfaction out of anything anymore."/>
+            <RadioButton
+                android:id="@+id/q43"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I am dissatisfied or bored with everything."/>
+
+        </RadioGroup>
+
+
+        <!--        5-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q5"
+            android:checkedButton="@+id/q51"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q51"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I don't feel particularly guilty."/>
+            <RadioButton
+                android:id="@+id/q54"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I feel guilty a good part of the time."/>
+            <RadioButton
+                android:id="@+id/q52"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I feel quite guilty most of the time."/>
+            <RadioButton
+                android:id="@+id/q53"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I feel guilty all of the time."/>
+
+        </RadioGroup>
+
+
+        <!--        6-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q6"
+            android:checkedButton="@+id/q61"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q61"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I don't feel I am being punished."/>
+            <RadioButton
+                android:id="@+id/q64"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I feel I may be punished."/>
+            <RadioButton
+                android:id="@+id/q62"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I expect to be punished."/>
+            <RadioButton
+                android:id="@+id/q63"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I feel I am being punished."/>
+
+        </RadioGroup>
+
+
+        <!--        7-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q7"
+            android:checkedButton="@+id/q71"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q71"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I don't feel disappointed in myself."/>
+            <RadioButton
+                android:id="@+id/q74"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I am disappointed in myself."/>
+            <RadioButton
+                android:id="@+id/q72"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I am disgusted with myself."/>
+            <RadioButton
+                android:id="@+id/q73"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I hate myself."/>
+
+        </RadioGroup>
+
+
+        <!--        8-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="8"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q8"
+            android:checkedButton="@+id/q81"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q81"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I don't feel I am any worse than anybody else."/>
+            <RadioButton
+                android:id="@+id/q84"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I am critical of myself for my weaknesses or mistakes."/>
+            <RadioButton
+                android:id="@+id/q82"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I blame myself all the time for my faults."/>
+            <RadioButton
+                android:id="@+id/q83"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I blame myself for everything bad that happens."/>
+
+        </RadioGroup>
+
+
+        <!--       9-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="9"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q9"
+            android:checkedButton="@+id/q91"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q91"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I don't have any thoughts of killing myself."/>
+            <RadioButton
+                android:id="@+id/q94"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I have thoughts of killing myself, but I would not carry them out."/>
+            <RadioButton
+                android:id="@+id/q92"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I would like to kill myself."/>
+            <RadioButton
+                android:id="@+id/q93"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I would kill myself if I had the chance."/>
+
+        </RadioGroup>
+
+
+        <!--       10-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q10"
+            android:checkedButton="@+id/q101"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q101"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I don't cry any more than usual."/>
+            <RadioButton
+                android:id="@+id/q104"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I cry more now than I used to."/>
+            <RadioButton
+                android:id="@+id/q102"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I cry all the time now."/>
+            <RadioButton
+                android:id="@+id/q103"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I used to be able to cry, but now I can't cry even though I want to."/>
+
+        </RadioGroup>
+
+
+        <!--       11-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="11"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q111"
+            android:checkedButton="@+id/q1111"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q1111"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I am no more irritated by things than I ever was."/>
+            <RadioButton
+                android:id="@+id/q1114"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I am slightly more irritated now than usual."/>
+            <RadioButton
+                android:id="@+id/q1112"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I am quite annoyed or irritated a good deal of the time."/>
+            <RadioButton
+                android:id="@+id/q1113"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I feel irritated all the time."/>
+
+        </RadioGroup>
+
+
+        <!--       12-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="12"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q112"
+            android:checkedButton="@+id/q1121"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q1121"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I have not lost interest in other people."/>
+            <RadioButton
+                android:id="@+id/q1124"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I am less interested in other people than I used to be."/>
+            <RadioButton
+                android:id="@+id/q1122"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I have lost most of my interest in other people."/>
+            <RadioButton
+                android:id="@+id/q1123"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I have lost all of my interest in other people."/>
+
+        </RadioGroup>
+
+
+
+        <!--       13-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="13"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q113"
+            android:checkedButton="@+id/q1131"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q1131"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I make decisions about as well as I ever could."/>
+            <RadioButton
+                android:id="@+id/q1134"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I put off making decisions more than I used to."/>
+            <RadioButton
+                android:id="@+id/q1132"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I have greater difficulty in making decisions more than I used to."/>
+            <RadioButton
+                android:id="@+id/q1133"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I can't make decisions at all anymore."/>
+
+        </RadioGroup>
+
+
+        <!--       14-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="14"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q114"
+            android:checkedButton="@+id/q1141"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q1141"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I don't feel that I look any worse than I used to."/>
+            <RadioButton
+                android:id="@+id/q1144"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I am worried that I am looking old or unattractive."/>
+            <RadioButton
+                android:id="@+id/q1142"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I feel there are permanent changes in my appearance that make me look unattractive."/>
+            <RadioButton
+                android:id="@+id/q1143"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I believe that I look ugly."/>
+
+        </RadioGroup>
+
+
+
+        <!--       15-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="15"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q115"
+            android:checkedButton="@+id/q1151"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q1151"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I can work about as well as before."/>
+            <RadioButton
+                android:id="@+id/q1154"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 It takes an extra effort to get started at doing something."/>
+            <RadioButton
+                android:id="@+id/q1152"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I have to push myself very hard to do anything."/>
+            <RadioButton
+                android:id="@+id/q1153"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I can't do any work at all."/>
+
+        </RadioGroup>
+
+
+
+        <!--       16-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="16"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q116"
+            android:checkedButton="@+id/q1161"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q1161"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I can sleep as well as usual."/>
+            <RadioButton
+                android:id="@+id/q1164"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I don't sleep as well as I used to."/>
+            <RadioButton
+                android:id="@+id/q1162"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I wake up 1-2 hours earlier than usual and find it hard to get back to sleep."/>
+            <RadioButton
+                android:id="@+id/q1163"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I wake up several hours earlier than I used to and cannot get back to sleep."/>
+
+        </RadioGroup>
+
+
+        <!--       17-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="17"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q117"
+            android:checkedButton="@+id/q1171"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q1171"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I don't get more tired than usual."/>
+            <RadioButton
+                android:id="@+id/q1174"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I get tired more easily than I used to."/>
+            <RadioButton
+                android:id="@+id/q1172"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I get tired from doing almost anything."/>
+            <RadioButton
+                android:id="@+id/q1173"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I am too tired to do anything."/>
+
+        </RadioGroup>
+
+
+
+        <!--       18-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="18"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q118"
+            android:checkedButton="@+id/q1181"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q1181"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 My appetite is no worse than usual."/>
+            <RadioButton
+                android:id="@+id/q1184"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 My appetite is not as good as it used to be"/>
+            <RadioButton
+                android:id="@+id/q1182"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 My appetite is much worse now."/>
+            <RadioButton
+                android:id="@+id/q1183"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I have no appetite at all anymore."/>
+
+        </RadioGroup>
+
+
+
+        <!--       19-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="19"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q119"
+            android:checkedButton="@+id/q1191"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q1191"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I haven't lost much weight, if any, lately."/>
+            <RadioButton
+                android:id="@+id/q1194"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I have lost more than five pounds."/>
+            <RadioButton
+                android:id="@+id/q1192"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I have lost more than ten pounds."/>
+            <RadioButton
+                android:id="@+id/q1193"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I have lost more than fifteen pounds."/>
+
+        </RadioGroup>
+
+
+
+        <!--       20-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="20"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q200"
+            android:checkedButton="@+id/q2001"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q2001"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I am no more worried about my health than usual."/>
+            <RadioButton
+                android:id="@+id/q2004"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I am worried about physical problems like aches, pains, upset stomach, or constipation."/>
+            <RadioButton
+                android:id="@+id/q2002"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I am very worried about physical problems and it's hard to think of much else."/>
+            <RadioButton
+                android:id="@+id/q2003"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I am so worried about my physical problems that I cannot think of anything else."/>
+
+        </RadioGroup>
+
+
+        <!--       21-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="21"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"></TextView>
+
+
+
+        <RadioGroup
+            android:id="@+id/q201"
+            android:checkedButton="@+id/q2011"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <RadioButton
+                android:id="@+id/q2011"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="0 I have not noticed any recent change in my interest in sex."/>
+            <RadioButton
+                android:id="@+id/q2014"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1 I am less interested in sex than I used to be."/>
+            <RadioButton
+                android:id="@+id/q2012"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="2 I have almost no interest in sex."/>
+            <RadioButton
+                android:id="@+id/q2013"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="3 I have lost interest in sex completely."/>
+
+        </RadioGroup>
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Calculate"
+            android:id="@+id/calculate"
+            android:layout_marginBottom="100dp"/>
     </LinearLayout>
 
 </ScrollView>
