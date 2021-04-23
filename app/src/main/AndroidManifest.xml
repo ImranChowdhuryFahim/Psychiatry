@@ -3,6 +3,7 @@
     package="com.brainfluence.psychiatry">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -11,10 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Psychiatry">
-        <activity android:name=".DepressionCheckerActivity"
+        <activity android:name=".QuestionnaireActivity"
             android:screenOrientation="portrait"
+            android:label="Initial Questionnaire"></activity>
+        <activity
+            android:name=".DepressionCheckerActivity"
             android:label="Depression Assessment Questionnaire"
-            android:parentActivityName=".Home"></activity>
+            android:parentActivityName=".Home"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".TextShowActivity"
             android:parentActivityName=".Home"

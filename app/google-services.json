@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "626911422295",
+    "project_id": "psychiatry-84c0c",
+    "storage_bucket": "psychiatry-84c0c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626911422295:android:0fea25e363266eac8c4012",
+        "android_client_info": {
+          "package_name": "com.brainfluence.psychiatry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "626911422295-ajt1bnthj6ns9in2nl4paj7pqaovijb7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brainfluence.psychiatry",
+            "certificate_hash": "24b7e8d537d436d3b06ba406b91db78896a4b6a5"
+          }
+        },
+        {
+          "client_id": "626911422295-65fnch6ihdhtv5shrqa9rcsdpbmpvqhr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRrbzZMVWTbLYJw0XyAMKie9cnrylvgkc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "626911422295-65fnch6ihdhtv5shrqa9rcsdpbmpvqhr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
