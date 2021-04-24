@@ -1,6 +1,7 @@
 package com.brainfluence.psychiatry.bttom_nav_ui.psychological;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -12,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.brainfluence.psychiatry.DoctorsListShowActivity;
 import com.brainfluence.psychiatry.R;
 import com.brainfluence.psychiatry.ViewHolder.ProblemViewHolder;
 import com.brainfluence.psychiatry.model.ProblemModel;
@@ -33,12 +36,14 @@ public class Psychological extends Fragment {
     private SharedPreferences sharedPref;
     private FirebaseRecyclerAdapter<ProblemModel, ProblemViewHolder> adapter;
     private String uid;
+    private Button consultDoctor;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_psychological, container, false);
         recyclerView = root.findViewById(R.id.psychologicalProblemsList);
+        consultDoctor = root.findViewById(R.id.consultDoctor);
         sharedPref = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         uid = sharedPref.getString(UID,"123");
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -75,6 +80,13 @@ public class Psychological extends Fragment {
             adapter.notifyDataSetChanged();
             recyclerView.setAdapter(adapter);
         }
+
+        consultDoctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), DoctorsListShowActivity.class));
+            }
+        });
 
 
         return root;

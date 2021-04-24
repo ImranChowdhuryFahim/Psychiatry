@@ -1,14 +1,469 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.updateInfo.UpdateInfo">
+    tools:context=".QuestionnaireActivity">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please answer the following questions."
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1.Do you have any family history of mental Illness?"
+            android:textSize="18dp"
+            ></TextView>
+
+        <RadioGroup
+            android:id="@+id/ques1"
+            android:checkedButton="@+id/ques11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/ques11"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="yes"
+                android:paddingRight="20dp"/>
+            <RadioButton
+                android:id="@+id/ques12"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="no"/>
+        </RadioGroup>
+
+        <!--        2-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. Are you happy about your academic condition?"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <RadioGroup
+            android:id="@+id/ques2"
+            android:checkedButton="@+id/ques21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/ques21"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="yes"
+                android:paddingRight="20dp"/>
+            <RadioButton
+                android:id="@+id/ques22"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="no"/>
+        </RadioGroup>
+
+
+        <!--        3-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3.What is your CGPA?"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cgpa"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CGPA"
+            android:layout_marginBottom="10dp"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cgpaInput"
+                android:inputType="numberDecimal"
+                android:digits="0123456789."
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <!--        4-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4.Are you addicted to any drugs?"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <RadioGroup
+            android:id="@+id/ques4"
+            android:checkedButton="@+id/ques41"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/ques41"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="yes"
+                android:paddingRight="20dp"/>
+            <RadioButton
+                android:id="@+id/ques42"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="no"/>
+        </RadioGroup>
+
+
+        <!--        5-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5. Are you in a relationship?"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <RadioGroup
+            android:id="@+id/ques5"
+            android:checkedButton="@+id/ques51"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/ques51"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="yes"
+                android:paddingRight="20dp"/>
+            <RadioButton
+                android:id="@+id/ques52"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="no"/>
+        </RadioGroup>
+
+
+        <!--        6-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6. If yes are you happy?"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <RadioGroup
+            android:id="@+id/ques6"
+            android:checkedButton="@+id/ques61"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/ques61"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="yes"
+                android:paddingRight="20dp"/>
+            <RadioButton
+                android:id="@+id/ques62"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="no"/>
+        </RadioGroup>
+
+
+        <!--        7-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7. Did you have a recent breakup?"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <RadioGroup
+            android:id="@+id/ques7"
+            android:checkedButton="@+id/ques71"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/ques71"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="yes"
+                android:paddingRight="20dp"/>
+            <RadioButton
+                android:id="@+id/ques72"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="no"/>
+        </RadioGroup>
+
+
+        <!--        8-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="8.Do you often have conflicts with your friends?"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <RadioGroup
+            android:id="@+id/ques8"
+            android:checkedButton="@+id/ques81"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/ques81"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="yes"
+                android:paddingRight="20dp"/>
+            <RadioButton
+                android:id="@+id/ques82"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="no"/>
+        </RadioGroup>
+
+
+        <!--        9-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="9. Do you have a financial problem in your family?"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <RadioGroup
+            android:id="@+id/ques9"
+            android:checkedButton="@+id/ques91"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/ques91"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="yes"
+                android:paddingRight="20dp"/>
+            <RadioButton
+                android:id="@+id/ques92"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="no"/>
+        </RadioGroup>
+
+
+
+        <!--        10-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10. Do you have any kind of sadness from death or loss?"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <RadioGroup
+            android:id="@+id/ques10"
+            android:checkedButton="@+id/ques101"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/ques101"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="yes"
+                android:paddingRight="20dp"/>
+            <RadioButton
+                android:id="@+id/ques102"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="no"/>
+        </RadioGroup>
+
+
+
+        <!--       11-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="11. Do you have any bad habits that you can't get rid of?"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <RadioGroup
+            android:id="@+id/ques111"
+            android:checkedButton="@+id/ques1111"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/ques1111"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="yes"
+                android:paddingRight="20dp"/>
+            <RadioButton
+                android:id="@+id/ques1112"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="no"/>
+        </RadioGroup>
+
+
+
+        <!--        12-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="12. Have you ever been bullied?"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <RadioGroup
+            android:id="@+id/ques112"
+            android:checkedButton="@+id/ques1121"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/ques1121"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="yes"
+                android:paddingRight="20dp"/>
+            <RadioButton
+                android:id="@+id/ques1122"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="no"/>
+        </RadioGroup>
+
+
+
+        <!--        13-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="13. Are you a victim of ragging?"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <RadioGroup
+            android:id="@+id/ques113"
+            android:checkedButton="@+id/ques1131"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/ques1131"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="yes"
+                android:paddingRight="20dp"/>
+            <RadioButton
+                android:id="@+id/ques1132"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="no"/>
+        </RadioGroup>
+
+
+        <!--        14-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="14. Have you ever been sexually harassed or abused?"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            ></TextView>
+
+        <RadioGroup
+            android:id="@+id/ques114"
+            android:checkedButton="@+id/ques1141"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/ques1141"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="yes"
+                android:paddingRight="20dp"/>
+            <RadioButton
+                android:id="@+id/ques1142"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="no"/>
+        </RadioGroup>
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Submit"
+            android:textAllCaps="true"
+            android:id="@+id/submit"
+            android:layout_marginBottom="100dp"/>
+
+
+    </LinearLayout>
+
+</ScrollView>

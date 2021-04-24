@@ -3,7 +3,7 @@
     package="com.brainfluence.psychiatry">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".OfflineFirebase"
@@ -13,9 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Psychiatry">
-        <activity android:name=".QuestionnaireActivity"
+        <activity android:name=".TeachersListShowActivity"
             android:screenOrientation="portrait"
-            android:label="Initial Questionnaire"></activity>
+            android:label="Teachers List"
+            ></activity>
+        <activity android:name=".DoctorsListShowActivity"
+            android:screenOrientation="portrait"
+            android:label="Doctors List"
+            />
+        <activity
+            android:name=".QuestionnaireActivity"
+            android:label="Initial Questionnaire"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".DepressionCheckerActivity"
             android:label="Depression Assessment Questionnaire"

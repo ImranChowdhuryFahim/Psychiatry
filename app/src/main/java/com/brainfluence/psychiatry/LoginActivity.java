@@ -63,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
     public static final String EMAIL = "email";
     public static final String USER_NAME = "userName";
     public static final String INFO_ADDED1    = "infoAdded";
+    public static final String UNIVERSITY_NAME = "CUET";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -190,6 +191,7 @@ public class LoginActivity extends AppCompatActivity {
                                                         if(finalChild.equals("students"))
                                                         {
                                                             editor.putString(INFO_ADDED1, snapshot1.child(user.getUid()).child("infoAdded").getValue().toString());
+                                                            editor.putString(UNIVERSITY_NAME,snapshot1.child(user.getUid()).child("universityName").getValue().toString());
                                                         }
                                                         else {
                                                             editor.putString(INFO_ADDED1,"false");

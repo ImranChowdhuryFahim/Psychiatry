@@ -60,6 +60,8 @@ public class Home extends AppCompatActivity {
 
         Menu menu = navigationView.getMenu();
 
+        menu.findItem(R.id.profile).setVisible(false);
+
         if(accountType.equals("students"))
         {
             menu.findItem(R.id.studentRequests).setVisible(false);
