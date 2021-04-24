@@ -7,9 +7,9 @@
         android:title="Psychological" />
 
     <item
-        android:id="@+id/educational"
+        android:id="@+id/academic"
         android:icon="@drawable/ic_baseline_cast_for_education_24"
-        android:title="Educational" />
+        android:title="Academic" />
 
 
 </menu>

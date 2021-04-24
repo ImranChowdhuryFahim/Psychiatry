@@ -37,6 +37,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -61,6 +62,7 @@ public class StudentRegActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ProgressDialog progressDialog;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,24 @@ public class StudentRegActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("");
+
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("Token", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        token = task.getResult();
+
+                        Log.d("Token", token);
+//                        Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
         uniNameList = new ArrayList<String>();
@@ -161,7 +181,7 @@ public class StudentRegActivity extends AppCompatActivity {
 
                 progressDialog = new ProgressDialog(StudentRegActivity.this);
                 progressDialog.setMessage("Please wait..."); // Setting Message
-                progressDialog.setTitle("Validating"); // Setting Title
+                progressDialog.setTitle("Registering"); // Setting Title
                 progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
                 progressDialog.show(); // Display Progress Dialog
                 progressDialog.setCancelable(false);
@@ -183,9 +203,11 @@ public class StudentRegActivity extends AppCompatActivity {
                                             dobInput.getText().toString().trim(),
                                             radioButton.getText().toString().trim(),
                                             passInput.getText().toString().trim(),
-                                            user.getUid().toString().trim());
+                                            user.getUid().toString().trim(),
+                                            token,
+                                            "false");
 
-                                    databaseReference.child("students").child(autoCompleteUniName.getText().toString().trim()).child(user.getUid()).setValue(studentModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    databaseReference.child("students").child(user.getUid()).setValue(studentModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             progressDialog.dismiss();
@@ -200,6 +222,7 @@ public class StudentRegActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which){
                                                     startActivity(new Intent(StudentRegActivity.this,LoginActivity.class));
+                                                    finish();
                                                     dialog.dismiss();
                                                 }
                                             });

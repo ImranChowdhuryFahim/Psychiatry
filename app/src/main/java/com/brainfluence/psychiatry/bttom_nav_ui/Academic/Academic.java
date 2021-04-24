@@ -1,4 +1,4 @@
-package com.brainfluence.psychiatry.bttom_nav_ui.psychological;
+package com.brainfluence.psychiatry.bttom_nav_ui.Academic;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import static com.brainfluence.psychiatry.LoginActivity.SHARED_PREFS;
 import static com.brainfluence.psychiatry.LoginActivity.UID;
 
-public class Psychological extends Fragment {
+public class Academic extends Fragment {
 
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
@@ -37,12 +37,12 @@ public class Psychological extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_psychological, container, false);
-        recyclerView = root.findViewById(R.id.psychologicalProblemsList);
+        View root = inflater.inflate(R.layout.fragment_educational, container, false);
+        recyclerView = root.findViewById(R.id.educationalProblemsList);
         sharedPref = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         uid = sharedPref.getString(UID,"123");
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("psychologicalProblems");
+        databaseReference = firebaseDatabase.getReference("academicProblems");
         databaseReference.keepSynced(true);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());

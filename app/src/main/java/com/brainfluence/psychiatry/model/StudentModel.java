@@ -1,7 +1,8 @@
 package com.brainfluence.psychiatry.model;
 
 public class StudentModel {
-    public String name,email,studentId,universityName,department,phoneNumber,dob,gender,password,uid;
+    public String name,email,studentId,universityName,department,phoneNumber,dob,gender,password,uid,fToken,infoAdded;
+
 
     public StudentModel()
     {
@@ -15,9 +16,11 @@ public class StudentModel {
         this.gender = null;
         this.password = null;
         this.uid = null;
+        this.fToken = null;
+        this.infoAdded = null;
     }
 
-    public StudentModel(String name, String email, String studentId, String universityName, String department, String phoneNumber, String dob, String gender, String password,String uid) {
+    public StudentModel(String name, String email, String studentId, String universityName, String department, String phoneNumber, String dob, String gender, String password,String uid,String fToken,String infoAdded) {
         this.name = name;
         this.email = email;
         this.studentId = studentId;
@@ -28,6 +31,24 @@ public class StudentModel {
         this.gender = gender;
         this.password = password;
         this.uid = uid;
+        this.fToken = fToken;
+        this.infoAdded = infoAdded;
+    }
+
+    public String getInfoAdded() {
+        return infoAdded;
+    }
+
+    public void setInfoAdded(String infoAdded) {
+        this.infoAdded = infoAdded;
+    }
+
+    public String getfToken() {
+        return fToken;
+    }
+
+    public void setfToken(String fToken) {
+        this.fToken = fToken;
     }
 
     public String getUid() {

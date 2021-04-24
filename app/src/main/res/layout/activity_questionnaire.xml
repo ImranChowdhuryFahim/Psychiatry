@@ -99,6 +99,9 @@
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/cgpaInput"
+                android:inputType="numberDecimal"
+                android:digits="0123456789."
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -272,7 +275,7 @@
 
         <RadioGroup
             android:id="@+id/ques9"
-            android:checkedButton="@+id/ques61"
+            android:checkedButton="@+id/ques91"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -431,7 +434,7 @@
 
         <RadioGroup
             android:id="@+id/ques114"
-            android:checkedButton="@+id/ques61"
+            android:checkedButton="@+id/ques1141"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"

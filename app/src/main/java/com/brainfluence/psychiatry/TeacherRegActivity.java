@@ -1,15 +1,18 @@
 package com.brainfluence.psychiatry;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -17,8 +20,23 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.brainfluence.psychiatry.model.StudentModel;
+import com.brainfluence.psychiatry.model.TeacherModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,6 +53,12 @@ public class TeacherRegActivity extends AppCompatActivity {
     private ArrayAdapter<String> uniNameAdapter,positionAdapter;
     private RadioGroup radioGroup;
     private RadioButton radioButton;
+    private String token;
+    private TeacherModel teacherModel;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +84,28 @@ public class TeacherRegActivity extends AppCompatActivity {
         SignUp = findViewById(R.id.signUp);
         radioGroup = findViewById(R.id.radioDSW);
         position = findViewById(R.id.position);
+
+
+        mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("");
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("Token", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        token = task.getResult();
+
+                        Log.d("Token", token);
+//                        Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
         uniNameList = new ArrayList<String>();
@@ -113,7 +159,171 @@ public class TeacherRegActivity extends AppCompatActivity {
                 }
 
                 radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
-                radioButton.getText();
+
+
+                progressDialog = new ProgressDialog(TeacherRegActivity.this);
+                progressDialog.setMessage("Please wait..."); // Setting Message
+                progressDialog.setTitle("Registering"); // Setting Title
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+                progressDialog.show(); // Display Progress Dialog
+                progressDialog.setCancelable(false);
+
+                mAuth.createUserWithEmailAndPassword(emailInput.getText().toString().trim(), passInput.getText().toString().trim())
+                        .addOnCompleteListener(TeacherRegActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    FirebaseUser user = mAuth.getCurrentUser();
+
+                                    teacherModel = new TeacherModel(nameInput.getText().toString().trim(),
+                                            emailInput.getText().toString().trim(),
+                                            autoCompleteUniName.getText().toString().trim(),
+                                            deptInput.getText().toString().trim(),
+                                            positionInput.getText().toString().trim(),
+                                            radioButton.getText().toString().trim(),
+                                            phoneNumInput.getText().toString().trim(),
+                                            passInput.getText().toString().trim(),
+                                            user.getUid().toString().trim(),
+                                            token);
+
+                                    databaseReference.child("teachers").child(user.getUid()).setValue(teacherModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            progressDialog.dismiss();
+                                            AlertDialog.Builder builder=new AlertDialog.Builder(TeacherRegActivity.this);
+                                            builder.setCancelable(false);
+                                            builder.setIcon(R.drawable.ic_baseline_info_24);
+                                            builder.setTitle("Registration Successful");
+                                            builder.setMessage("Registered successfully.Now Please Login to continue.");
+                                            builder.setInverseBackgroundForced(true);
+                                            builder.setPositiveButton("Login",new DialogInterface.OnClickListener(){
+
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which){
+                                                    startActivity(new Intent(TeacherRegActivity.this,LoginActivity.class));
+                                                    finish();
+                                                    dialog.dismiss();
+                                                }
+                                            });
+
+                                            AlertDialog alert=builder.create();
+                                            alert.show();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            progressDialog.dismiss();
+                                            AlertDialog.Builder builder=new AlertDialog.Builder(TeacherRegActivity.this);
+                                            builder.setCancelable(true);
+                                            builder.setIcon(R.drawable.ic_baseline_info_24);
+                                            builder.setTitle("Registration Failed");
+                                            builder.setMessage("Please try again");
+                                            builder.setInverseBackgroundForced(true);
+                                            builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which){
+                                                    dialog.dismiss();
+                                                }
+                                            });
+
+                                            AlertDialog alert=builder.create();
+                                            alert.show();
+                                        }
+                                    });
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    try
+                                    {
+                                        throw task.getException();
+                                    }
+                                    // if user enters wrong email.
+                                    catch (FirebaseAuthWeakPasswordException weakPassword)
+                                    {
+                                        progressDialog.dismiss();
+                                        AlertDialog.Builder builder=new AlertDialog.Builder(TeacherRegActivity.this);
+                                        builder.setCancelable(true);
+                                        builder.setIcon(R.drawable.ic_baseline_info_24);
+                                        builder.setTitle("WeakPassword Error");
+                                        builder.setMessage("Please provide a strong password");
+                                        builder.setInverseBackgroundForced(true);
+                                        builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which){
+                                                dialog.dismiss();
+                                            }
+                                        });
+
+                                        AlertDialog alert=builder.create();
+                                        alert.show();
+                                    }
+                                    // if user enters wrong password.
+                                    catch (FirebaseAuthInvalidCredentialsException malformedEmail)
+                                    {
+                                        progressDialog.dismiss();
+                                        AlertDialog.Builder builder=new AlertDialog.Builder(TeacherRegActivity.this);
+                                        builder.setCancelable(true);
+                                        builder.setIcon(R.drawable.ic_baseline_info_24);
+                                        builder.setTitle("Validation Error");
+                                        builder.setMessage("Email and password do not match");
+                                        builder.setInverseBackgroundForced(true);
+                                        builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which){
+                                                dialog.dismiss();
+                                            }
+                                        });
+
+                                        AlertDialog alert=builder.create();
+                                        alert.show();
+                                    }
+                                    catch (FirebaseAuthUserCollisionException existEmail)
+                                    {
+                                        progressDialog.dismiss();
+                                        AlertDialog.Builder builder=new AlertDialog.Builder(TeacherRegActivity.this);
+                                        builder.setCancelable(true);
+                                        builder.setIcon(R.drawable.ic_baseline_info_24);
+                                        builder.setTitle("ExistEmail Error");
+                                        builder.setMessage("This email is already in use");
+                                        builder.setInverseBackgroundForced(true);
+                                        builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which){
+                                                dialog.dismiss();
+                                            }
+                                        });
+
+                                        AlertDialog alert=builder.create();
+                                        alert.show();
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        progressDialog.dismiss();
+                                        AlertDialog.Builder builder=new AlertDialog.Builder(TeacherRegActivity.this);
+                                        builder.setCancelable(true);
+                                        builder.setIcon(R.drawable.ic_baseline_info_24);
+                                        builder.setTitle("Registration Failed");
+                                        builder.setMessage("Please try again");
+                                        builder.setInverseBackgroundForced(true);
+                                        builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which){
+                                                dialog.dismiss();
+                                            }
+                                        });
+
+                                        AlertDialog alert=builder.create();
+                                        alert.show();
+
+                                    }
+                                }
+                            }
+                        });
             }
         });
 

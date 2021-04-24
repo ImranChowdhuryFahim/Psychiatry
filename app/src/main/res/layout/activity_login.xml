@@ -41,10 +41,9 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="260dp">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="-3dp"
-                tools:layout_editor_absoluteY="253dp"
                 android:layout_marginBottom="20dp"/>
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -58,10 +57,9 @@
             android:layout_marginBottom="20dp"
             >
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="-3dp"
-                tools:layout_editor_absoluteY="253dp"
                 android:inputType="textPassword"
                 />
         </com.google.android.material.textfield.TextInputLayout>

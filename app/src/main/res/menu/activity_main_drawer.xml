@@ -46,5 +46,9 @@
             android:id="@+id/notifications"
             android:icon="@drawable/ic_baseline_notifications_active_24"
             android:title="Notifications"/>
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"
+            android:title="Logout"/>
     </group>
 </menu>

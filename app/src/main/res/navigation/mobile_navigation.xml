@@ -66,10 +66,16 @@
         android:label="Psychological"
         tools:layout="@layout/fragment_psychological"/>
     <fragment
-        android:id="@+id/educational"
-        android:name="com.brainfluence.psychiatry.bttom_nav_ui.educational.Educational"
-        android:label="Educational"
+        android:id="@+id/academic"
+        android:name="com.brainfluence.psychiatry.bttom_nav_ui.Academic.Academic"
+        android:label="Academic"
         tools:layout="@layout/fragment_educational"/>
+
+    <fragment
+        android:id="@+id/logout"
+        android:name="com.brainfluence.psychiatry.ui.logout.Logout"
+        android:label="Logout"
+        tools:layout="@layout/fragment_logout"/>
 
 
 

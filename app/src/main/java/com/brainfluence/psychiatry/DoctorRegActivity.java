@@ -1,20 +1,38 @@
 package com.brainfluence.psychiatry;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
+import com.brainfluence.psychiatry.model.DoctorModel;
+import com.brainfluence.psychiatry.model.StudentModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import es.dmoral.toasty.Toasty;
 
@@ -23,6 +41,12 @@ public class DoctorRegActivity extends AppCompatActivity {
     private TextInputLayout name,email,phoneNum,pass,cpass,degree,exp;
     private TextInputEditText nameInput,emailInput,phoneNumInput,passInput,cpassInput,degreeInput,expInput;
     private Button SignUp;
+    private String token;
+    private DoctorModel doctorModel;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +69,27 @@ public class DoctorRegActivity extends AppCompatActivity {
         exp = findViewById(R.id.exp);
         expInput = findViewById(R.id.expInput);
 
+        mAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("");
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("Token", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        token = task.getResult();
+
+                        Log.d("Token", token);
+//                        Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +109,167 @@ public class DoctorRegActivity extends AppCompatActivity {
                     cpass.setError("Password do not match");
                     return;
                 }
+
+                progressDialog = new ProgressDialog(DoctorRegActivity.this);
+                progressDialog.setMessage("Please wait..."); // Setting Message
+                progressDialog.setTitle("Registering"); // Setting Title
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+                progressDialog.show(); // Display Progress Dialog
+                progressDialog.setCancelable(false);
+
+                mAuth.createUserWithEmailAndPassword(emailInput.getText().toString().trim(), passInput.getText().toString().trim())
+                        .addOnCompleteListener(DoctorRegActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    FirebaseUser user = mAuth.getCurrentUser();
+
+                                    doctorModel = new DoctorModel(nameInput.getText().toString().trim(),
+                                            emailInput.getText().toString().trim(),
+                                            phoneNumInput.getText().toString().trim(),
+                                            passInput.getText().toString().trim(),
+                                            degreeInput.getText().toString().trim(),
+                                            expInput.getText().toString().trim(),
+                                            user.getUid().toString().trim(),
+                                            token);
+
+                                    databaseReference.child("doctors").child(user.getUid()).setValue(doctorModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            progressDialog.dismiss();
+                                            AlertDialog.Builder builder=new AlertDialog.Builder(DoctorRegActivity.this);
+                                            builder.setCancelable(false);
+                                            builder.setIcon(R.drawable.ic_baseline_info_24);
+                                            builder.setTitle("Registration Successful");
+                                            builder.setMessage("Registered successfully.Now Please Login to continue.");
+                                            builder.setInverseBackgroundForced(true);
+                                            builder.setPositiveButton("Login",new DialogInterface.OnClickListener(){
+
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which){
+                                                    startActivity(new Intent(DoctorRegActivity.this,LoginActivity.class));
+                                                    dialog.dismiss();
+                                                }
+                                            });
+
+                                            AlertDialog alert=builder.create();
+                                            alert.show();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            progressDialog.dismiss();
+                                            AlertDialog.Builder builder=new AlertDialog.Builder(DoctorRegActivity.this);
+                                            builder.setCancelable(true);
+                                            builder.setIcon(R.drawable.ic_baseline_info_24);
+                                            builder.setTitle("Registration Failed");
+                                            builder.setMessage("Please try again");
+                                            builder.setInverseBackgroundForced(true);
+                                            builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which){
+                                                    dialog.dismiss();
+                                                }
+                                            });
+
+                                            AlertDialog alert=builder.create();
+                                            alert.show();
+                                        }
+                                    });
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    try
+                                    {
+                                        throw task.getException();
+                                    }
+                                    // if user enters wrong email.
+                                    catch (FirebaseAuthWeakPasswordException weakPassword)
+                                    {
+                                        progressDialog.dismiss();
+                                        AlertDialog.Builder builder=new AlertDialog.Builder(DoctorRegActivity.this);
+                                        builder.setCancelable(true);
+                                        builder.setIcon(R.drawable.ic_baseline_info_24);
+                                        builder.setTitle("WeakPassword Error");
+                                        builder.setMessage("Please provide a strong password");
+                                        builder.setInverseBackgroundForced(true);
+                                        builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which){
+                                                dialog.dismiss();
+                                            }
+                                        });
+
+                                        AlertDialog alert=builder.create();
+                                        alert.show();
+                                    }
+                                    // if user enters wrong password.
+                                    catch (FirebaseAuthInvalidCredentialsException malformedEmail)
+                                    {
+                                        progressDialog.dismiss();
+                                        AlertDialog.Builder builder=new AlertDialog.Builder(DoctorRegActivity.this);
+                                        builder.setCancelable(true);
+                                        builder.setIcon(R.drawable.ic_baseline_info_24);
+                                        builder.setTitle("Validation Error");
+                                        builder.setMessage("Email and password do not match");
+                                        builder.setInverseBackgroundForced(true);
+                                        builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which){
+                                                dialog.dismiss();
+                                            }
+                                        });
+
+                                        AlertDialog alert=builder.create();
+                                        alert.show();
+                                    }
+                                    catch (FirebaseAuthUserCollisionException existEmail)
+                                    {
+                                        progressDialog.dismiss();
+                                        AlertDialog.Builder builder=new AlertDialog.Builder(DoctorRegActivity.this);
+                                        builder.setCancelable(true);
+                                        builder.setIcon(R.drawable.ic_baseline_info_24);
+                                        builder.setTitle("ExistEmail Error");
+                                        builder.setMessage("This email is already in use");
+                                        builder.setInverseBackgroundForced(true);
+                                        builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which){
+                                                dialog.dismiss();
+                                            }
+                                        });
+
+                                        AlertDialog alert=builder.create();
+                                        alert.show();
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        progressDialog.dismiss();
+                                        AlertDialog.Builder builder=new AlertDialog.Builder(DoctorRegActivity.this);
+                                        builder.setCancelable(true);
+                                        builder.setIcon(R.drawable.ic_baseline_info_24);
+                                        builder.setTitle("Registration Failed");
+                                        builder.setMessage("Please try again");
+                                        builder.setInverseBackgroundForced(true);
+                                        builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which){
+                                                dialog.dismiss();
+                                            }
+                                        });
+
+                                        AlertDialog alert=builder.create();
+                                        alert.show();
+
+                                    }
+                                }
+                            }
+                        });
             }
         });
 

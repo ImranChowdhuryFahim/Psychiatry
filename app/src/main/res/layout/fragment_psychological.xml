@@ -3,12 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bttom_nav_ui.psychological.Psychological">
+    tools:context=".bttom_nav_ui.psychological.Psychological"
+    android:background="#F8F8FF">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Psychological" />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:layout_margin="10dp"
+       >
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight="2"
+           android:orientation="vertical">
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/psychologicalProblemsList"
+               android:layout_width="match_parent"
+               android:layout_height="0dp"
+               android:layout_weight="2.5">
+
+           </androidx.recyclerview.widget.RecyclerView>
+       </LinearLayout>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_weight=".5"
+           android:orientation="vertical">
+           <Button
+               android:layout_marginTop="20dp"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_horizontal"
+               android:text="Consult A doctor">
+
+           </Button>
+
+       </LinearLayout>
+
+
+   </LinearLayout>
 
 </FrameLayout>

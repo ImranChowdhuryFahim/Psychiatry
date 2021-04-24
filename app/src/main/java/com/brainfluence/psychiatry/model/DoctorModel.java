@@ -3,7 +3,7 @@ package com.brainfluence.psychiatry.model;
 
 public class DoctorModel {
 
-    private String name,email,phoneNum,pass,degree,exp,uid;
+    private String name,email,phoneNum,pass,degree,exp,uid,fToken;
 
     public DoctorModel() {
         this.name = null;
@@ -13,9 +13,10 @@ public class DoctorModel {
         this.degree = null;
         this.exp = null;
         this.uid = null;
+        this.fToken = null;
     }
 
-    public DoctorModel(String name, String email, String phoneNum, String pass, String degree, String exp, String uid) {
+    public DoctorModel(String name, String email, String phoneNum, String pass, String degree, String exp, String uid, String fToken) {
         this.name = name;
         this.email = email;
         this.phoneNum = phoneNum;
@@ -23,6 +24,15 @@ public class DoctorModel {
         this.degree = degree;
         this.exp = exp;
         this.uid = uid;
+        this.fToken = fToken;
+    }
+
+    public String getfToken() {
+        return fToken;
+    }
+
+    public void setfToken(String fToken) {
+        this.fToken = fToken;
     }
 
     public String getName() {

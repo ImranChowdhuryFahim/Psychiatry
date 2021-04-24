@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.brainfluence.psychiatry.R;
-import com.brainfluence.psychiatry.bttom_nav_ui.educational.Educational;
+import com.brainfluence.psychiatry.bttom_nav_ui.Academic.Academic;
 import com.brainfluence.psychiatry.bttom_nav_ui.psychological.Psychological;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -28,10 +28,10 @@ public class ProblemListShow extends Fragment {
                     FragmentManager fragmentManager1 = getChildFragmentManager();
                     fragmentManager1.beginTransaction().replace(R.id.problemShowFragment, psychological).commit();
                     return true;
-                case R.id.educational:
-                    Educational educational = new Educational();
+                case R.id.academic:
+                    Academic academic = new Academic();
                     FragmentManager fragmentManager2 = getChildFragmentManager();
-                    fragmentManager2.beginTransaction().replace(R.id.problemShowFragment, educational).commit();
+                    fragmentManager2.beginTransaction().replace(R.id.problemShowFragment, academic).commit();
 
                     return true;
             }
