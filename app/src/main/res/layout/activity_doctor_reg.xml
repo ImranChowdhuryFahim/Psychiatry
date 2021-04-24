@@ -55,7 +55,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/dept"
+            android:id="@+id/exp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             app:suffixText="years"
             app:startIconDrawable="@drawable/ic_baseline_access_time_filled_24">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/deptInput"
+                android:id="@+id/expInput"
                 android:layout_width="match_parent"
                 android:inputType="number"
                 android:layout_height="wrap_content"/>
@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:text="Sign Up"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="100dp"
             />
     </LinearLayout>
 
