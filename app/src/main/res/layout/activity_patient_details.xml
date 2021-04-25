@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PatientDetailsActivity"
+    android:background="#F8F8FF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/patient"
+                android:layout_marginBottom="10dp"></ImageView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/patientName"
+                android:text="Name: John Doe"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                >
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/patientGender"
+                android:text="Sex: Male"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                >
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/patientAge"
+                android:text="Age: 22 years"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                >
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/patientPhoneNumber"
+                android:text="phoneNumber: 01521106831"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                >
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/patientNote"
+                android:text="Patient's Note: I feel alone and depressed"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                >
+
+            </TextView>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ProblemsList"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                >
+
+            </TextView>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/psychologicalProblemsList">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:orientation="vertical">
+
+                        <Button
+                            android:layout_marginTop="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:text="confirm Schedule"
+                            android:id="@+id/confirmSchedule"
+
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="50dp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+<!--        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/psychologicalProblemsList"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.5">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/consultDoctor"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Consult A doctor">
+
+            </Button>
+
+        </LinearLayout>
+
+
+    </LinearLayout>-->
+
+
+</RelativeLayout>

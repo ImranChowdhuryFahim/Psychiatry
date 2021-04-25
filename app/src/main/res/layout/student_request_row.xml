@@ -21,7 +21,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/professor" />
+                app:srcCompat="@drawable/student"
+                android:scaleType="fitXY"/>
 
         </LinearLayout>
         <LinearLayout
@@ -31,7 +32,7 @@
             android:paddingLeft="10dp"
             >
             <TextView
-                android:id="@+id/teacherName"
+                android:id="@+id/studentName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="John Doe"
@@ -41,7 +42,7 @@
 
             </TextView>
             <TextView
-                android:id="@+id/teacherDegree"
+                android:id="@+id/studentInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="MBBS"
@@ -50,8 +51,10 @@
                 >
 
             </TextView>
+
+
             <TextView
-                android:id="@+id/teacherDsw"
+                android:id="@+id/studentRequestDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="5 years experienced"
@@ -61,11 +64,13 @@
 
             </TextView>
 
+
+
             <Button
-                android:id="@+id/shareWithTeacher"
+                android:id="@+id/studentDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="share"
+                android:text="details"
                 android:layout_gravity="end"
                 android:layout_marginRight="5dp"></Button>
 

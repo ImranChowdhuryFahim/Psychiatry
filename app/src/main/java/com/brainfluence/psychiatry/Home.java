@@ -78,6 +78,7 @@ public class Home extends AppCompatActivity {
             menu.findItem(R.id.updateInfo).setVisible(false);
             menu.findItem(R.id.problemList).setVisible(false);
             menu.findItem(R.id.appointmentRequests).setVisible(false);
+            menu.findItem(R.id.appointmentList).setVisible(false);
         }
 
 //        menu.findItem(R.id.nav_gallery).setVisible(false);

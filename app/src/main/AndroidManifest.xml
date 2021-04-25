@@ -13,14 +13,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Psychiatry">
-        <activity android:name=".TeachersListShowActivity"
+        <activity android:name=".StudentDetailsActivity"
             android:screenOrientation="portrait"
+            android:label="Student Details"></activity>
+        <activity
+            android:name=".PatientDetailsActivity"
+            android:label="Patient Details"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TeachersListShowActivity"
             android:label="Teachers List"
-            ></activity>
-        <activity android:name=".DoctorsListShowActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DoctorsListShowActivity"
             android:label="Doctors List"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".QuestionnaireActivity"
             android:label="Initial Questionnaire"

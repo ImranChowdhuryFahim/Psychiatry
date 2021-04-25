@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/notificationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IPFT Record updated
+05/11/20"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/notificationBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IPFT Record updated
+05/11/20"
+            android:textStyle="italic"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp">
+
+
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/notificationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="05/11/20"
+            android:layout_gravity="end"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp">
+
+
+
+        </TextView>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

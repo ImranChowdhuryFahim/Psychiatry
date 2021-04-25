@@ -8,18 +8,18 @@
     >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         >
 
         <TextView
             android:id="@+id/problemName"
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
+            android:layout_height="50dp"
             android:text="IPFT Record updated
 05/11/20"
             android:textStyle="bold"
-            android:textSize="22sp"
+            android:textSize="16sp"
             android:gravity="center_vertical"
             android:paddingLeft="20dp">
 
