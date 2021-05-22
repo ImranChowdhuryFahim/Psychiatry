@@ -3,6 +3,7 @@ package com.brainfluence.psychiatry;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -66,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
     public static final String UNIVERSITY_NAME = "CUET";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -351,6 +353,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which){
                 finish();
+                moveTaskToBack(true);
 
             }
         });

@@ -1,12 +1,19 @@
 package com.brainfluence.psychiatry.ui.updateInfo;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +22,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.brainfluence.psychiatry.Home;
+import com.brainfluence.psychiatry.LoginActivity;
 import com.brainfluence.psychiatry.QuestionnaireActivity;
 import com.brainfluence.psychiatry.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -40,13 +48,16 @@ public class UpdateInfo extends Fragment {
     private DatabaseReference databaseReference,databaseReference1;
     private SharedPreferences sharedPref;
     private String uid;
+    private ProgressDialog progressDialog;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         View root = inflater.inflate(R.layout.fragment_update_info, container, false);
+
 
         cgpa = root.findViewById(R.id.cgpa);
         cgpaInput = root.findViewById(R.id.cgpaInput);
@@ -76,10 +87,24 @@ public class UpdateInfo extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (checkConnectivity()){
+                } else {
+                    nointernetp();
+                    return;
+                }
+
                 if(!validateCGPA())
                 {
                     return;
                 }
+
+                progressDialog = new ProgressDialog(getContext());
+                progressDialog.setMessage("Please wait..."); // Setting Message
+                progressDialog.setTitle("Updating info"); // Setting Title
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+                progressDialog.show(); // Display Progress Dialog
+                progressDialog.setCancelable(false);
 
                 databaseReference1.child("academicProblems").child(uid).removeValue();
                 databaseReference1.child("psychologicalProblems").child(uid).removeValue();
@@ -99,34 +124,19 @@ public class UpdateInfo extends Fragment {
                 b14 = root.findViewById(ques114.getCheckedRadioButtonId());
                 Random random = new Random();
 
-                if(Double.parseDouble(cgpaInput.getText().toString()) < 3.00)
+                if(Double.parseDouble(cgpaInput.getText().toString()) < 3.00 | b2.getText().toString().equals("no"))
                 {
-                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Low CGPA");
+                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Problem in Study/Academic problem");
                 }
-                if(b13.getText().toString().equals("yes"))
-                {
-                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Got Ragged");
-                }
+
 
                 if(b1.getText().toString().equals("yes"))
                 {
                     databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Has Mental Illness");
                 }
-                if(b2.getText().toString().equals("no"))
-                {
-                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Not Happy With The Academic Condition");
-                }
-                if(b4.getText().toString().equals("yes"))
-                {
-                    databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Drug Addicted");
-                }
                 if(b5.getText().toString().equals("yes") && b6.getText().toString().equals("no"))
                 {
                     databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Not Happy In Relationship");
-                }
-                if(b7.getText().toString().equals("yes"))
-                {
-                    databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Had Recent Breakup");
                 }
                 if(b8.getText().toString().equals("yes"))
                 {
@@ -136,21 +146,18 @@ public class UpdateInfo extends Fragment {
                 {
                     databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Has Financial Problem");
                 }
-                if(b10.getText().toString().equals("yes"))
+                if(b7.getText().toString().equals("yes") | b10.getText().toString().equals("yes"))
                 {
-                    databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Has Sadness");
+                    databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Suffers From Loss");
                 }
-                if(b11.getText().toString().equals("yes"))
+                if(b4.getText().toString().equals("yes") | b11.getText().toString().equals("yes"))
                 {
-                    databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Has Bad Habit");
+                    databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Has Addiction");
                 }
-                if(b12.getText().toString().equals("yes"))
+
+                if(b12.getText().toString().equals("yes") | b13.getText().toString().equals("yes") | b14.getText().toString().equals("yes"))
                 {
-                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Got Bullied");
-                }
-                if(b14.getText().toString().equals("yes"))
-                {
-                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Got Harassed");
+                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Been Harassed");
                 }
 
                 databaseReference.child("students").child(uid).child("infoAdded").setValue("true");
@@ -158,10 +165,23 @@ public class UpdateInfo extends Fragment {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString(INFO_ADDED1,"true");
                 editor.apply();
+                new CountDownTimer(2000, 1000) {
+                    @Override
+                    public void onFinish() {
 
 
-                startActivity(new Intent(getActivity(), Home.class));
-                getActivity().finish();
+                        progressDialog.dismiss();
+
+                        startActivity(new Intent(getActivity(), Home.class));
+                        getActivity().finish();
+
+
+                    }
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                    }
+                }.start();
+
             }
         });
         return root;
@@ -186,5 +206,45 @@ public class UpdateInfo extends Fragment {
             return true;
         }
 
+    }
+
+    private void nointernetp() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+        builder.setCancelable(true);
+        builder.setIcon(R.drawable.ic_baseline_network_check_24);
+        builder.setTitle("Bad Connection");
+        builder.setMessage("No internet access, please activate the internet to use the app!");
+        builder.setInverseBackgroundForced(true);
+        builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("Reload",new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+
+                Intent intent = new Intent(getContext(), Home.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+        AlertDialog alert=builder.create();
+        alert.show();
+    }
+
+    private boolean checkConnectivity() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+        if ((info == null || !info.isConnected() || !info.isAvailable())) {
+            // Toast.makeText(getApplicationContext(), "Sin conexión a Internet...", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
     }
 }

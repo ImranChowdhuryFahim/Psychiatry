@@ -1,12 +1,18 @@
 package com.brainfluence.psychiatry;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -35,11 +41,12 @@ public class QuestionnaireActivity extends AppCompatActivity {
     private DatabaseReference databaseReference,databaseReference1;
     private SharedPreferences sharedPref;
     private String uid;
-
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_questionnaire);
 
         cgpa = findViewById(R.id.cgpa);
@@ -71,12 +78,24 @@ public class QuestionnaireActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (checkConnectivity()){
+                } else {
+                    nointernetp();
+                    return;
+                }
+
                 if(!validateCGPA())
                 {
                     return;
                 }
 
 
+                progressDialog = new ProgressDialog(QuestionnaireActivity.this);
+                progressDialog.setMessage("Please wait..."); // Setting Message
+                progressDialog.setTitle("Uploading info"); // Setting Title
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+                progressDialog.show(); // Display Progress Dialog
+                progressDialog.setCancelable(false);
 
 
                 b1 = findViewById(ques1.getCheckedRadioButtonId());
@@ -94,34 +113,19 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 b14 = findViewById(ques114.getCheckedRadioButtonId());
                 Random random = new Random();
 
-                if(Double.parseDouble(cgpaInput.getText().toString()) < 3.00)
+                if(Double.parseDouble(cgpaInput.getText().toString()) < 3.00 | b2.getText().toString().equals("no"))
                 {
-                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Low CGPA");
+                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Problem in Study/Academic problem");
                 }
-                if(b13.getText().toString().equals("yes"))
-                {
-                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Got Ragged");
-                }
+
 
                 if(b1.getText().toString().equals("yes"))
                 {
                     databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Has Mental Illness");
                 }
-                if(b2.getText().toString().equals("no"))
-                {
-                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Not Happy With The Academic Condition");
-                }
-                if(b4.getText().toString().equals("yes"))
-                {
-                    databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Drug Addicted");
-                }
                 if(b5.getText().toString().equals("yes") && b6.getText().toString().equals("no"))
                 {
                     databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Not Happy In Relationship");
-                }
-                if(b7.getText().toString().equals("yes"))
-                {
-                    databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Had Recent Breakup");
                 }
                 if(b8.getText().toString().equals("yes"))
                 {
@@ -131,21 +135,18 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 {
                     databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Has Financial Problem");
                 }
-                if(b10.getText().toString().equals("yes"))
+                if(b7.getText().toString().equals("yes") | b10.getText().toString().equals("yes"))
                 {
-                    databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Has Sadness");
+                    databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Suffers From Loss");
                 }
-                if(b11.getText().toString().equals("yes"))
+                if(b4.getText().toString().equals("yes") | b11.getText().toString().equals("yes"))
                 {
-                    databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Has Bad Habit");
+                    databaseReference1.child("psychologicalProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Has Addiction");
                 }
-                if(b12.getText().toString().equals("yes"))
+
+                if(b12.getText().toString().equals("yes") | b13.getText().toString().equals("yes") | b14.getText().toString().equals("yes"))
                 {
-                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Got Bullied");
-                }
-                if(b14.getText().toString().equals("yes"))
-                {
-                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Got Harassed");
+                    databaseReference1.child("academicProblems").child(uid).child(System.currentTimeMillis()+""+random.nextInt()).child("name").setValue("Been Harassed");
                 }
 
                 databaseReference.child("students").child(uid).child("infoAdded").setValue("true");
@@ -154,9 +155,22 @@ public class QuestionnaireActivity extends AppCompatActivity {
                 editor.putString(INFO_ADDED1,"true");
                 editor.apply();
 
+                new CountDownTimer(2000, 1000) {
+                    @Override
+                    public void onFinish() {
 
-                startActivity(new Intent(QuestionnaireActivity.this,Home.class));
-                finish();
+                        progressDialog.dismiss();
+                        startActivity(new Intent(QuestionnaireActivity.this,Home.class));
+                        finish();
+
+
+                    }
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                    }
+                }.start();
+
+
 
             }
         });
@@ -188,5 +202,46 @@ public class QuestionnaireActivity extends AppCompatActivity {
             return true;
         }
 
+    }
+
+
+    private void nointernetp() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(QuestionnaireActivity.this);
+        builder.setCancelable(true);
+        builder.setIcon(R.drawable.ic_baseline_network_check_24);
+        builder.setTitle("Bad Connection");
+        builder.setMessage("No internet access, please activate the internet to use the app!");
+        builder.setInverseBackgroundForced(true);
+        builder.setPositiveButton("Close",new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("Reload",new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+
+                Intent intent = new Intent(getBaseContext(),QuestionnaireActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        AlertDialog alert=builder.create();
+        alert.show();
+    }
+
+    private boolean checkConnectivity() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+        if ((info == null || !info.isConnected() || !info.isAvailable())) {
+            // Toast.makeText(getApplicationContext(), "Sin conexión a Internet...", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.brainfluence.psychiatry.ui.problemsList;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -43,7 +44,9 @@ public class ProblemListShow extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         View root = inflater.inflate(R.layout.fragment_problem_list_show, container, false);
+
         navigationView = root.findViewById(R.id.navbartransporte);
         Psychological psychological = new Psychological();
         FragmentManager fragmentManager1 = getChildFragmentManager();

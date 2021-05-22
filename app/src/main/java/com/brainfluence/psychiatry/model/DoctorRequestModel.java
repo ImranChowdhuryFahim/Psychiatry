@@ -1,7 +1,7 @@
 package com.brainfluence.psychiatry.model;
 
 public class DoctorRequestModel {
-    public String patientName,patientAge,patientGender,patientUid,patientDetails,requestDate,phoneNumber;
+    public String patientName,patientAge,patientGender,patientUid,patientDetails,requestDate,phoneNumber,token;
 
     public DoctorRequestModel() {
         this.patientName = null;
@@ -11,9 +11,10 @@ public class DoctorRequestModel {
         this.patientDetails = null;
         this.requestDate = null;
         this.phoneNumber = null;
+        this.token = null;
     }
 
-    public DoctorRequestModel(String patientName, String patientAge, String patientGender, String patientUid, String patientDetails, String requestDate, String phoneNumber) {
+    public DoctorRequestModel(String patientName, String patientAge, String patientGender, String patientUid, String patientDetails, String requestDate, String phoneNumber,String token) {
         this.patientName = patientName;
         this.patientAge = patientAge;
         this.patientGender = patientGender;
@@ -21,6 +22,15 @@ public class DoctorRequestModel {
         this.patientDetails = patientDetails;
         this.requestDate = requestDate;
         this.phoneNumber = phoneNumber;
+        this.token = token;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getPhoneNumber() {

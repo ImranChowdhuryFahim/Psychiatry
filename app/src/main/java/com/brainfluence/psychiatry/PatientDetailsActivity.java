@@ -2,6 +2,7 @@ package com.brainfluence.psychiatry;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.brainfluence.psychiatry.ViewHolder.DoctorRequestViewHolder;
@@ -29,17 +31,20 @@ import static com.brainfluence.psychiatry.LoginActivity.UID;
 public class PatientDetailsActivity extends AppCompatActivity {
 
     private TextView patientName,patientAge,patientGender,patientPhoneNumber,patientNote;
+    private Button confirmSchedule;
     private String uid,note,age,gender,name,phoneNumber;
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private FirebaseRecyclerAdapter<ProblemModel, ProblemViewHolder> adapter;
+    private String token;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_patient_details);
 
         patientName = findViewById(R.id.patientName);
@@ -47,6 +52,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
         patientGender = findViewById(R.id.patientGender);
         patientPhoneNumber = findViewById(R.id.patientPhoneNumber);
         patientNote = findViewById(R.id.patientNote);
+        confirmSchedule = findViewById(R.id.confirmSchedule);
 
         uid = getIntent().getStringExtra("uid");
         note = getIntent().getStringExtra("note");
@@ -54,6 +60,7 @@ public class PatientDetailsActivity extends AppCompatActivity {
         gender = getIntent().getStringExtra("gender");
         name = getIntent().getStringExtra("name");
         phoneNumber = getIntent().getStringExtra("phoneNumber");
+        token = getIntent().getStringExtra("token");
 
 
 
@@ -98,6 +105,18 @@ public class PatientDetailsActivity extends AppCompatActivity {
         adapter.startListening();
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
+
+
+        confirmSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PatientDetailsActivity.this,ConfirmScheduleActivity.class);
+                intent.putExtra("studentUid",uid);
+                intent.putExtra("studentName",name);
+                intent.putExtra("token",token);
+                startActivity(intent);
+            }
+        });
 
 
     }

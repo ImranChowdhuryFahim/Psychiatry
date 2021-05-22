@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,6 +44,7 @@ public class AppointmentRequests extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         View root = inflater.inflate(R.layout.fragment_appointment_requests, container, false);
         recyclerView = root.findViewById(R.id.appointmentRequestRecycler);
 
@@ -80,6 +82,7 @@ public class AppointmentRequests extends Fragment {
                             intent.putExtra("gender",model.getPatientGender());
                             intent.putExtra("name",model.getPatientName());
                             intent.putExtra("phoneNumber",model.getPhoneNumber());
+                            intent.putExtra("token",model.getToken());
                             startActivity(intent);
                         }
                     });

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +15,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.brainfluence.psychiatry.ViewHolder.DoctorViewHolder;
 import com.brainfluence.psychiatry.model.DoctorModel;
 import com.brainfluence.psychiatry.model.DoctorRequestModel;
@@ -34,6 +43,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -41,7 +54,10 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 
@@ -58,10 +74,12 @@ public class DoctorsListShowActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter<DoctorModel, DoctorViewHolder> adapter;
     private String uid;
     private ProgressDialog progressDialog;
+    private RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_doctors_list_show);
 
 
@@ -78,6 +96,8 @@ public class DoctorsListShowActivity extends AppCompatActivity {
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
+
+        requestQueue = Volley.newRequestQueue(DoctorsListShowActivity.this);
 
 
 
@@ -130,6 +150,7 @@ public class DoctorsListShowActivity extends AppCompatActivity {
 
 
                                         String dob = snapshot.child("dob").getValue().toString();
+                                        String token = snapshot.child("fToken").getValue().toString();
 
                                         Date date1= null;
                                         try {
@@ -160,13 +181,16 @@ public class DoctorsListShowActivity extends AppCompatActivity {
 
 
 
-                                        DoctorRequestModel doctorRequestModel = new DoctorRequestModel(name,age,gender,uid,patientDetails,simpleDateFormat.format(now),phoneNumber);
+                                        DoctorRequestModel doctorRequestModel = new DoctorRequestModel(name,age,gender,uid,patientDetails,simpleDateFormat.format(now),phoneNumber,token);
                                         NotificationModel notificationModel = new NotificationModel("Appointment Request","New appointment request from "+name,simpleDateFormat.format(now));
 
                                         databaseReferenceWrite.child("appointmentRequests").child(model.getUid()).child(System.currentTimeMillis()+"").setValue(doctorRequestModel);
 
                                         databaseReferenceWrite.child("notifications").child(model.getUid()).child(System.currentTimeMillis()+"").setValue(notificationModel);
 
+                                        ArrayList<String> t = new ArrayList<String>();
+                                        t.add(model.getfToken());
+                                        Notifier(t,"Appointment Request","New appointment request from "+name);
                                         progressDialog.dismiss();
                                         Toasty.success(DoctorsListShowActivity.this,"Successfully requested for appointment",Toasty.LENGTH_SHORT).show();
 
@@ -210,5 +234,48 @@ public class DoctorsListShowActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             recyclerView.setAdapter(adapter);
 
+    }
+
+    private void Notifier(ArrayList<String> regToken, String title, String body){
+
+        JSONObject data = new JSONObject();
+        try {
+            JSONObject notify = new JSONObject();
+            JSONArray tokens = new JSONArray(regToken);
+            notify.put("title", title);
+            notify.put("body", body);
+//            notify.put("android_channel_id","cuet_connect_primary_notification_channel");
+            data.put("notification", notify);
+            data.put("registration_ids", tokens);
+            Log.d("simji", "Notifier: " + data);
+
+            String Url = "https://fcm.googleapis.com/fcm/send";
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, Url,
+                    data,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String,String> header = new HashMap<>();
+                    header.put("content-type","application/json");
+                    header.put("authorization","key=AAAAkfbVJ1c:APA91bGxoMpoGXy3p_MDw5hUrbKOBXmdNJeGcL2Wtf0NabqQAJF_dJy8jR_bDN17fo_jDzW26odTpMY-vPzSROf5tkN-VcznNtdPmzfK7-ha-moCL4mfuQ62zYquHSJdeUq--jPVEzYg");
+                    return  header;
+                }
+            };
+            requestQueue.add(request);
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
     }
 }
